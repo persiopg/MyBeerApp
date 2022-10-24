@@ -14,9 +14,23 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Carocel from "../../component/Carousel";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import Card from "../../component/Card";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Home", "Sobre", "Contato"];
+
+const random = Math.floor(Math.random() * 500);
+
+const Item = styled(Paper)(({ theme }) => ({
+	backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+	...theme.typography.body2,
+	padding: theme.spacing(1),
+	textAlign: "center",
+	color: theme.palette.text.secondary,
+}));
 
 function DrawerAppBar(props)  {
 	const { window } = props;
@@ -94,6 +108,83 @@ function DrawerAppBar(props)  {
 			<Box component="main" sx={{ p: 3 }}>
 				<Toolbar />				
 				<Carocel/>
+				<Divider sx={{pt:2}}/>
+				<Box sx={{ width: "100%",pt:2 }}>
+					<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+						<Grid item  xs={12} sm={6} md={4} lg={3}>
+							<Item><Card image={`https://picsum.photos/id/${random}/5000/5000`} title="Produto aleatorio" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,"/></Item>
+						</Grid>
+					</Grid>
+				</Box>
 				<Typography>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
           fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,

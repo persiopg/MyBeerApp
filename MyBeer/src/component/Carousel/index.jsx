@@ -12,13 +12,12 @@ const styles = {
 	root: {
 		position: "relative",
 		width:"100%",
-		padding: "10 10px",
 	},
 	slideContainer: {
         
 	},
 	slide: {
-		padding: 15,
+		padding: 0,
 		minHeight: 100,
 
 		color: "#fff",
@@ -52,10 +51,10 @@ class CarouselView extends React.Component {
 			<Grid container rowSpacing={0} columnSpacing={{ xs: 0, sm: 0, md: 0 }} sx={{
 				display: "flex",
 				justifyContent: "center",
-				alignItems: "center"    ,
+				alignItems: "center",
 			}}>
 				
-				<Grid item xs={12}  >
+				<Grid item xs={12}>
 					<div style={styles.root}>
 						<AutoPlaySwipeableViews
 							index={index}
@@ -65,15 +64,15 @@ class CarouselView extends React.Component {
 						>
 							<div style={Object.assign({}, styles.slide, styles.slide1)}>
 								<p>slide n°1</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/200/300?grayscale`}/>
+								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000?grayscale`}/>
 							</div>
 							<div style={Object.assign({}, styles.slide, styles.slide2)}>
 								<p>slide n°2</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/200/300`}/>
+								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000`}/>
 							</div>
 							<div style={Object.assign({}, styles.slide, styles.slide3)}>
 								<p>slide n°3</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/200/300`}/>
+								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000?blur=2`}/>
 							</div>
 						</AutoPlaySwipeableViews>
 						<Pagination dots={3} index={index} onChangeIndex={this.handleChangeIndex} />
