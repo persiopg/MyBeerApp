@@ -13,20 +13,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Carocel from "../../component/Carousel";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
 
-function DrawerAppBar(props) {
+function DrawerAppBar(props)  {
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
-
+	
 	const drawer = (
-		<Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+		<Box onClick={handleDrawerToggle} sx={{ textAlign: "center",bgcolor:"#FFC800",height:"100%"}}>
 			<Typography variant="h6" sx={{ my: 2 }}>
 				My Beer
 			</Typography>
@@ -34,7 +35,7 @@ function DrawerAppBar(props) {
 			<List>
 				{navItems.map((item) => (
 					<ListItem key={item} disablePadding>
-						<ListItemButton sx={{ textAlign: "center" }}>
+						<ListItemButton sx={{ textAlign: "start" }}>
 							<ListItemText primary={item} />
 						</ListItemButton>
 					</ListItem>
@@ -44,10 +45,9 @@ function DrawerAppBar(props) {
 	);
 
 	const container = window !== undefined ? () => window().document.body : undefined;
-
 	return (
 		<Box sx={{ display: "flex" }}>
-			<AppBar component="nav">
+			<AppBar component="nav" sx={{bgcolor:"#ffc800"}}>
 				<Toolbar>
 					<IconButton
 						color="inherit"
@@ -92,7 +92,8 @@ function DrawerAppBar(props) {
 				</Drawer>
 			</Box>
 			<Box component="main" sx={{ p: 3 }}>
-				<Toolbar />
+				<Toolbar />				
+				<Carocel/>
 				<Typography>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
           fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
