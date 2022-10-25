@@ -52,9 +52,10 @@ class CarouselView extends React.Component {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
+				minHeight:{xs:"300px",sm:"none"}
 			}}>
 				
-				<Grid item xs={12}>
+				<Grid item xs={12} sx={{minHeight:{xs:"300px",sm:"none"}}}>
 					<div style={styles.root}>
 						<AutoPlaySwipeableViews
 							index={index}

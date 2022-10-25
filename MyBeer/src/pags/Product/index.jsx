@@ -13,24 +13,33 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Avatar } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import Card from "../../component/Card";
+import { Avatar, Grid, Paper, styled } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link, useParams } from "react-router-dom";
-import styles from "./Home.module.css";
-
-import Carousel from "../../component/Carousel";
+import { Link,useParams } from "react-router-dom";
 import data from "../../dataTest/MOCK_DATA.json";
-
+import MediaCard from "../../component/Card";
+import Map from "ol/Map";
+import View from "ol/View";
+import { OSM, Vector as VectorSource } from "ol/source";
+import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+import { fromLonLat } from "ol/proj.js";
+import "./style.css";
 const drawerWidth = 240;
+
 const navItems = [ "Sobre", "Contatos"];
 const settings = [{nome: "Perfil", caminho : "/perfil"}, {nome:"Favoritos", caminho: "/favoritos"}, {nome:"Sair",caminho:"/"}];
 
+const raster = new TileLayer({
+	source: new OSM(),
+});
+
+const source = new VectorSource({ wrapX: false });
+
+const vector = new VectorLayer({
+	source: source,
+});
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
 	...theme.typography.body2,
@@ -42,21 +51,19 @@ const Item = styled(Paper)(({ theme }) => ({
 function DrawerAppBar(props) {
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
-	const [user,setUser] = React.useState(null);
-
+	const [anchorElUser, setAnchorElUser] = React.useState(null); 
+	let [firstTime] = React.useState(true);
+	let product = {};
+	const {id, userLogin} = useParams();
+	data.map((item) => { 
+		if(item.id === +id) product = item;  
+		return product; });
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
-	const {userLogin} = useParams();
-	
-	React.useEffect(() => {
-		
-		if(userLogin!==null && userLogin !== undefined) { 
-			console.log(userLogin);
-			setUser(userLogin); }
-	}, [userLogin]);
-	
+	const lat = product.lat;
+	const long = product.long;
+
 	const drawer = (
 		<Box onClick={handleDrawerToggle}  sx={{ textAlign: "center",bgcolor:"#FFC800",height:"100%"}}>
 			<Typography variant="h6" sx={{ my: 2 }}>
@@ -67,7 +74,7 @@ function DrawerAppBar(props) {
 				{navItems.map((item) => (
 					<ListItem key={item} disablePadding>
 						<ListItemButton sx={{ textAlign: "center" }}>
-							<Link to={`/${item}`} className={styles.linkDrawer}>
+							<Link to={`/${item}`} >
 								<ListItemText primary={item} />
 							</Link>
 						</ListItemButton>
@@ -86,6 +93,19 @@ function DrawerAppBar(props) {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+	React.useEffect(() => {
+		if (firstTime) {
+			firstTime = false;
+			new Map({
+				layers: [raster, vector],
+				target: "map",
+				view: new View({
+					center: fromLonLat([long, lat]), //[ -47.79716246729982,-21.118398387653787] ribeirao preto lat long
+					zoom: 16,
+				}),                
+			});
+		}
+	}, [firstTime]);
 
 	return (
 		<Box sx={{ display: "flex" }}>
@@ -104,7 +124,7 @@ function DrawerAppBar(props) {
 						variant="h6"
 						noWrap
 						component="a"
-						href={`/user/${user}`}
+						href={`/user/${userLogin}`}
 						sx={{
 							mr: 2,
 							display: { xs: "none", md: "flex" },
@@ -141,7 +161,7 @@ function DrawerAppBar(props) {
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{navItems.map((item) => (
 							<Button key={item} sx={{ color: "#fff" }}>
-								<Link to={`/${item}`} className={styles.link}>
+								<Link to={`/${item}`} >
 									{item}
 								</Link>	
 							</Button>
@@ -150,7 +170,7 @@ function DrawerAppBar(props) {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt={user ===null? "Logar" : user} src="/static/images/avatar/2.jpg" />
+								<Avatar alt={userLogin} src="/static/images/avatar/2.jpg" />
 							</IconButton>
 						</Tooltip>
 						<Menu
@@ -170,8 +190,8 @@ function DrawerAppBar(props) {
 							onClose={handleCloseUserMenu}
 						>
 							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Link to={setting.caminho} className={styles.linkDrawer}>
+								<MenuItem key={setting.nome} onClick={handleCloseUserMenu}>
+									<Link to={setting.caminho}>
 										<Typography textAlign="center">{setting.nome}</Typography>
 									</Link>
 								</MenuItem>
@@ -197,26 +217,28 @@ function DrawerAppBar(props) {
 					{drawer}
 				</Drawer>
 			</Box>
-			<Box component="main" sx={{ p: 3 }}>
+			<Box component="main" sx={{ p: 3,width:"100%" }}>
 				<Toolbar />
-				<Carousel/>
-				<Box sx={{ width: "100%",pt:2 }}>
-					<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-
-						{data.map((item) => { return (
-							<Grid key={item.id} item  xs={12} sm={6} md={4} lg={3}>
-								<Item>
-									<Card id={item.id} user={user} image={`https://picsum.photos/id/${item.imgRandom}/5000/5000`} title={item.produto} text={item.descricao} valor={item.valor}/>
-								</Item>
-							</Grid>
-						);
-						})}						
+				
+				{/* <MediaCard id={product.id} image={`https://picsum.photos/id/${product.imgRandom}/5000/5000`} title={product.produto} text={product.descricao} valor={product.valor}/> */}
+					
+				<Grid
+					container
+					rowSpacing={1}
+					columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+				>
+					<Grid item xs={12} sm={12} md={6}>
+						<Item>
+							<div id="map" className="map"></div>
+						</Item>
 					</Grid>
-				</Box>
-				<Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
-         
-				</Typography>
+					<Grid item xs={12} sm={12} md={6}>
+						<Item>
+							<MediaCard id={product.id} image={`https://picsum.photos/id/${product.imgRandom}/5000/5000`} title={product.produto} text={product.descricao} valor={product.valor}/>
+						</Item>
+					</Grid>
+				</Grid>
+			
 			</Box>
 		</Box>
 	);
