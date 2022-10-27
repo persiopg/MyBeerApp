@@ -26,13 +26,21 @@ export default function MediaCard(props) {
 				</Typography>
 			</CardContent>
 			<CardActions>	
-				{props.user === null ? (<Link to={"/acessar"}><Button size="small" sx={{width:"100%"}}>Acessar</Button></Link>) : 
-					(		<>
+				{props.user === null ? (
+					<>
+						<Link to={"/acessar"}><Button size="small" sx={{width:"100%"}}>Acessar</Button></Link>
+						<Typography gutterBottom variant="h6" component="div" sx={{display:"flex",width:"70%",justifyContent:"end"}}>
+							{props.valor}
+						</Typography>
+					</>
+				) : (		
+					<>
 						<Link to={`/user/${props.user}/products/${props.id}`}><Button size="small" sx={{width:"100%"}}>Veja mais</Button></Link>
 						<Typography gutterBottom variant="h6" component="div" sx={{display:"flex",width:"70%",justifyContent:"end"}}>
 							{props.valor}
-						</Typography></>
-					)}
+						</Typography>
+					</>
+				)}
 			</CardActions>
 		</Card>
 	);
