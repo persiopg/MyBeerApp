@@ -5,6 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import HttpsIcon from "@mui/icons-material/Https";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import Logo from "../../assets/Logo_Prancheta.png";
 
 const style = {
 	position: "absolute",
@@ -39,7 +40,7 @@ function Acessar(){
 
 		// verificação para acesso
 		if (user === "persio" && senha === "senha")
-		{ return (window.location.href = `/user/${user}`); }
+		{ return (window.location.href = `/?user=${user}`); }
 		else {
 			setErrorMsg( "Usuário ou senha incorretos");
 			setSenha("");
@@ -58,25 +59,34 @@ function Acessar(){
 			<Container maxWidth="lg">
 				<Box
 					sx={{
+						
 						...style,
-						width: { xs: "90%", sm: "50%", md: "50%" },
+						width: { xs: "90%", sm: "50%", md: "25%" },
 						borderRadius: "8px",
 						p: 0,
 						m: 0,
+						display:"flex", alignItems:"center", justifyContent:"center"
 					}}
 				>
 					<Grid
 						container
-						rowSpacing={0}
+						rowSpacing={1}
 						columnSpacing={{ xs: 0, sm: 0, md: 0 }}
 						
 					>
+						<Grid item xs={12} sm={12} md={12} sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+							<div className={styles.logoBg}>
+								<img src={Logo} className={styles.logo}/>
+							</div>
+						
+						</Grid>
 						<Grid item xs={12} sm={12} md={12}>
 							<Item sx={{
-								height:"300px",
+								height:"auto",
 								display:"flex",
 								justifyContent:"center",
-								alignItems:"center",
+								alignItems:"start",
+								width: "auto",
 							}}>
 								<Grid
 									container

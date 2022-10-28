@@ -35,7 +35,7 @@ export default function MediaCard(props) {
 					</>
 				) : (		
 					<>
-						<Link to={`/user/${props.user}/products/${props.id}`}><Button size="small" sx={{width:"100%"}}>Veja mais</Button></Link>
+						<Link to={`/products/?user=${props.user}&product=${props.id}`}><Button size="small" sx={{width:"100%"}}>Veja mais</Button></Link>
 						<Typography gutterBottom variant="h6" component="div" sx={{display:"flex",width:"70%",justifyContent:"end"}}>
 							{props.valor}
 						</Typography>

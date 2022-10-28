@@ -1,17 +1,22 @@
 import { Box,     Container,      Paper, Typography } from "@mui/material";
 import React from "react";
+import styles from "./FooterContainer.module.css";
+// import Logo from "../../assets/Logo_Prancheta.png";
+import LogoSoNome from "../../assets/Logo_PranchetaSoNome.png";
 
-function FooterContainer(){
+function FooterContainer(props){
+	const bottom = props.bottom === undefined? -10 : props.bottom;
 	return (
 		<Paper sx={{
 			width: "100%",
-			bottom: -10,
+			bottom: bottom,
 			m:0 ,
 			bgcolor:"#ffc800",
-			minHeight:"180px",
+			minHeight:"100px",
 			display:"flex",
 			justifyContent:"center",
-			alignItems:"center"
+			alignItems:"center",
+			position: props.position
 		}} component="footer" square variant="outlined">
 			<Container maxWidth="lg">
 				<Box
@@ -24,7 +29,7 @@ function FooterContainer(){
 					}}
 				>
 					<div>
-						<img  src="" width={75} height={30} alt="Logo" />
+						<img  src={LogoSoNome} className={styles.logo} alt="Logo" />
 					</div>
 				</Box>
     

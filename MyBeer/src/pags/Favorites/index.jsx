@@ -3,13 +3,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Card from "../../component/Card";
 import TopMenu from "../../component/TopMenu";
+import userImg from "../../assets/user.png";
 
-import Carousel from "../../component/Carousel";
 import data from "../../dataTest/MOCK_DATA.json";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import FooterContainer from "../../component/FooterContainer";
+import CardLateral from "../../component/CardLateral";
 
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -38,23 +38,28 @@ function Home() {
 		<>
 			<TopMenu user={user}/>
 			<Box component="main" sx={{ p: 3 }}>
-				<Toolbar />
-				<Carousel/>
+				<Toolbar />				
 				<Box sx={{ width: "100%",pt:2 }}>
-					<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+					<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} flexDirection="row">
 
-						{data.map((item) => { return (
-							<Grid key={item.id} item  xs={12} sm={6} md={4} lg={3}>
-								<Item>
-									<Card id={item.id} user={user} image={`https://picsum.photos/id/${item.imgRandom}/5000/5000`} title={item.produto} text={item.descricao} valor={item.valor}/>
-								</Item>
-							</Grid>
-						);
-						})}						
+						<Grid item  xs={3}>
+							<Item>
+								<img src={userImg}/>
+							</Item>
+						</Grid>
+						<Grid item  xs={3}>							
+							<Typography variant="h5" gutterBottom>{user}</Typography>							
+						</Grid>
+						<Grid  item  xs={6} sm={6} md={6} lg={6}>
+							<Item>
+								<CardLateral id={data[1].id} user={user} image={`https://picsum.photos/id/${data[1].imgRandom}/5000/5000`} title={data[1].produto} text={data[1].descricao} valor={data[1].valor}/>
+							</Item>
+						</Grid>
+										
 					</Grid>
 				</Box>
 			</Box>
-			<FooterContainer />
+			<FooterContainer position="absolute" bottom="0"/>
 		</>
 	);
 }

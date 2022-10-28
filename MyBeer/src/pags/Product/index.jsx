@@ -1,7 +1,7 @@
 import React, { useEffect }from "react";
 import Toolbar from "@mui/material/Toolbar";
 import { Box, Grid, Paper, styled, Typography } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import data from "../../dataTest/MOCK_DATA.json";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -37,13 +37,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Product() {
+	const url = new URLSearchParams(window.location.search);
 	const [user,setUser] = React.useState(null);
 	
 	let [firstTime] = React.useState(true);
 	let product = {};
-	const {id, userLogin} = useParams();
+	const userLogin = url.get("user");
+	const produto = url.get("product");
+	console.log(url.get("user"));
 	data.map((item) => { 
-		if(item.id === +id) product = item;  
+		if(item.id === +produto) product = item;  
 		return product; });
 
 	const lat = product.lat;

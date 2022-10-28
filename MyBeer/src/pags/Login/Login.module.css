@@ -1,18 +1,4 @@
-.logo{
-    width: 100%;
-    height: 100%;
-    max-width: 300px;
-    max-height: 300px;
-}
-.loginTextContainer h2{
-    font-size: 34px;
-    font-weight: 700;color:  #1A8B82;
-}
-.loginTextContainer p{
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;color:  #1A8B82;
-}
+
 .title{
     display: flex;
     color: rgba(24, 24, 25, 0.9);
@@ -35,11 +21,11 @@
     padding-right: 40px;
 }
 .input:hover{    
-    border: 2px solid #00A69A;
+    border: 2px solid #c59b02;
 }
 .input:focus{
     outline: none;
-    border: 2px solid #00A69A;
+    border: 2px solid #c59b02;
 }
 .icon{
     color:#888888;
@@ -65,7 +51,7 @@
 .buttonLogin{
     width: 100%;
     height: 45px;
-    background: #18827b;
+    background: #c59b02;
     border-radius: 4px;
     font-weight: 500;
     font-size: 16px;
@@ -73,7 +59,7 @@
     border: none;
 }
 .buttonLogin:hover{
-    background: #16706a;
+    background: #725901;
     cursor: pointer;
 }
 .link{
@@ -92,4 +78,13 @@
     color: red;
     font-size: 14px;
     font-weight: 400;
+}
+.logo{ 
+    width: 200px;
+    height: 150px;
+}
+.logoBg{
+    background: #c59b02;
+    border: 5px solid rgb(255, 238, 0);
+    border-radius: 50%;
 }
