@@ -154,7 +154,9 @@ function DrawerAppBar(props) {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
+
 							{user !== undefined && user !== null ? (settings.map((setting) => (
+
 								<MenuItem key={setting} onClick={handleCloseUserMenu}>
 									<Link to={`${setting.caminho}/?user=${user}`} className={styles.linkDrawer}>
 										<Typography textAlign="center">{setting.nome}</Typography>

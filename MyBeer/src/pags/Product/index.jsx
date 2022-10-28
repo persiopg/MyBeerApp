@@ -148,7 +148,7 @@ function Product() {
 					</Grid>			
 				</Box>			
 			</Box>
-			<FooterContainer />
+			<FooterContainer position="absolute" bottom="0"/>
 		</>
 	);
 }
