@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Home() {
 	
-	const [user,setUser] = React.useState(null);
+	const [user,setUser] = React.useState("persio");
 	
 	const {userLogin} = useParams();
 	
