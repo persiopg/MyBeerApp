@@ -2,6 +2,8 @@ import * as React from "react";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Grid, Paper, styled } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
 	...theme.typography.body2,
@@ -12,7 +14,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function MediaCard(props) {
+	const [img, setImg] = useState("");
 
+	async function test(){
+		let testt = await props.image;
+		console.log(testt);
+		setImg(testt);
+	}
+	useEffect(()=> { test(); },[img]);
 	return (
 		<>
 			<Grid 
@@ -26,7 +35,7 @@ export default function MediaCard(props) {
 						<CardMedia
 							component="img" 
 							height="300"
-							image={props.image}
+							image={img}
 							alt={props.title}
 						/>
 					</Item>

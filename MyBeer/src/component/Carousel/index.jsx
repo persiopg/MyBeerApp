@@ -4,9 +4,14 @@ import { autoPlay } from "react-swipeable-views-utils";
 import Pagination from "./Pagination";
 import Carousel from "./Carousel.module.css";
 import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
+
+import data from "../../dataTest/MOCK_DATA.json";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-const random = Math.floor(Math.random() * 500);
+const random1 = Math.floor(Math.random() * data.length);
+const random2 = Math.floor(Math.random() * data.length);
+const random3 = Math.floor(Math.random() * data.length);
 
 const styles = {
 	root: {
@@ -32,6 +37,14 @@ const styles = {
 		backgroundColor: "#6AC0FF",
 	},
 };
+function carouselCard(random){	
+	return (
+		<Link to={`/products/?user=${"persio"}&product=${data[random].id}`}>
+			<p>{data[random].produto}</p>
+			<img className={Carousel.imgControl} src={`https://picsum.photos/id/${data[random].imgRandom}/5000/1000`}/>
+		</Link>
+	);
+}
 
 class CarouselView extends React.Component {
 	state = {
@@ -64,16 +77,13 @@ class CarouselView extends React.Component {
 							interval={3000}					
 						>
 							<div style={Object.assign({}, styles.slide, styles.slide1)}>
-								<p>slide n°1</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000?grayscale`}/>
+								{carouselCard(random1)}
 							</div>
 							<div style={Object.assign({}, styles.slide, styles.slide2)}>
-								<p>slide n°2</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000`}/>
+								{carouselCard(random2)}
 							</div>
 							<div style={Object.assign({}, styles.slide, styles.slide3)}>
-								<p>slide n°3</p>
-								<img className={Carousel.imgControl} src={`https://picsum.photos/id/${random}/5000/1000?blur=2`}/>
+								{carouselCard(random3)}
 							</div>
 						</AutoPlaySwipeableViews>
 						<Pagination dots={3} index={index} onChangeIndex={this.handleChangeIndex} />

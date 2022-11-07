@@ -44,7 +44,6 @@ function Product() {
 	let product = {};
 	const userLogin = url.get("user");
 	const produto = url.get("product");
-	console.log(url.get("user"));
 	data.map((item) => { 
 		if(item.id === +produto) product = item;  
 		return product; });
@@ -148,7 +147,7 @@ function Product() {
 					</Grid>			
 				</Box>			
 			</Box>
-			<FooterContainer position="absolute" bottom="0"/>
+			<FooterContainer user={user} position="absolute" bottom="0"/> 
 		</>
 	);
 }

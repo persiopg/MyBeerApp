@@ -8,13 +8,20 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
 export default function MediaCard(props) {
+	const [img, setImg] = React.useState("");
+
+	async function test(){
+		let testt = await props.image;
+		setImg(testt);
+	}
+	React.useEffect(()=> { test(); },[img]);
 
 	return (
 		<Card>
 			<CardMedia
 				component="img" 
 				height="300"
-				image={props.image}
+				image={img}
 				alt={props.title}
 			/>
 			<CardContent>

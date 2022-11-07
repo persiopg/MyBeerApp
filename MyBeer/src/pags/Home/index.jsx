@@ -33,7 +33,6 @@ function Home() {
 		}
 		else{ setUser(null); }
 	}, [userLogin]);
-	console.log(user);
 	return (
 		<>
 			<TopMenu user={user}/>
@@ -54,7 +53,7 @@ function Home() {
 					</Grid>
 				</Box>
 			</Box>
-			<FooterContainer />
+			<FooterContainer user={user} />
 		</>
 	);
 }

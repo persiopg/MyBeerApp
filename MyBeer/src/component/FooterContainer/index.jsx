@@ -1,11 +1,19 @@
 import { Box,     Container,      Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FooterContainer.module.css";
 // import Logo from "../../assets/Logo_Prancheta.png";
 import LogoSoNome from "../../assets/Logo_PranchetaSoNome.png";
 
 function FooterContainer(props){
+	const [user,setUser] = useState("");
 	const bottom = props.bottom === undefined? -10 : props.bottom;
+
+	useEffect(() => {
+		if(props.user === "null")
+			setUser(null);
+		else
+			setUser(props.user);
+	}, [props.user]);
 	return (
 		<Paper sx={{
 			width: "100%",
@@ -28,9 +36,23 @@ function FooterContainer(props){
 
 					}}
 				>
-					<div>
-						<img  src={LogoSoNome} className={styles.logo} alt="Logo" />
-					</div>
+					<Typography
+						variant="h6"
+						noWrap
+						component="a"
+						href={`/?user=${user}`}
+						sx={{
+							mr: 2,
+							display: { xs: "none", md: "flex" },
+							fontFamily: "monospace",
+							fontWeight: 700,
+							letterSpacing: ".3rem",
+							color: "inherit",
+							textDecoration: "none",
+						}}
+					>
+						<img src={LogoSoNome} className={styles.logo}/>
+					</Typography>
 				</Box>
     
 				<Box
